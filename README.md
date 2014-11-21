@@ -60,24 +60,26 @@ http://echo-service.stackato.danielwatrous.com/ deployed
 or for CloudFoundry
 
 ```
-vagrant@vagrant-ubuntu-trusty-64:~/services/service-broker$ cf push
-Using manifest file /home/vagrant/services/service-broker/manifest.yml
+vagrant@vagrant-ubuntu-trusty-64:~/cf-echo-service$ cf push
+Using manifest file /home/vagrant/cf-echo-service/manifest.yml
 
-Creating app service-broker in org myorg / space mydept as admin...
+Creating app echo-service in org myorg / space mydept as admin...
 OK
 
-Using route service-broker.10.244.0.34.xip.io
-Binding service-broker.10.244.0.34.xip.io to service-broker...
+Creating route echo-service.10.244.0.34.xip.io...
 OK
 
-Uploading service-broker...
-Uploading app files from: /home/vagrant/services/service-broker
-Uploading 8.2K, 4 files
+Binding echo-service.10.244.0.34.xip.io to echo-service...
+OK
+
+Uploading echo-service...
+Uploading app files from: /home/vagrant/cf-echo-service
+Uploading 14.4K, 6 files
 Done uploading
 OK
 
-Starting app service-broker in org myorg / space mydept as admin...
------> Downloaded app package (4.0K)
+Starting app echo-service in org myorg / space mydept as admin...
+-----> Downloaded app package (8.0K)
 -------> Buildpack version 1.0.5
 Use locally cached dependencies where possible
 -----> Installing runtime (python-3.4.1)
@@ -85,16 +87,15 @@ Use locally cached dependencies where possible
        Downloading/unpacking bottle (from -r requirements.txt (line 1))
          Running setup.py (path:/tmp/pip_build_vcap/bottle/setup.py) egg_info for package bottle
 
-       Downloading/unpacking requests (from -r requirements.txt (line 2))
-       Installing collected packages: bottle, requests
+       Installing collected packages: bottle
          Running setup.py install for bottle
            changing mode of build/scripts-3.4/bottle.py from 644 to 755
 
            changing mode of /app/.heroku/python/bin/bottle.py to 755
-       Successfully installed bottle requests
+       Successfully installed bottle
        Cleaning up...
 
------> Uploading droplet (34M)
+-----> Uploading droplet (33M)
 
 1 of 1 instances running
 
@@ -102,17 +103,17 @@ App started
 
 
 OK
-Showing health and status for app service-broker in org myorg / space mydept as admin...
+Showing health and status for app echo-service in org myorg / space mydept as admin...
 OK
 
 requested state: started
 instances: 1/1
 usage: 256M x 1 instances
-urls: service-broker.10.244.0.34.xip.io
-last uploaded: Fri Nov 21 20:28:19 UTC 2014
+urls: echo-service.10.244.0.34.xip.io
+last uploaded: Fri Nov 21 20:37:51 UTC 2014
 
      state     since                    cpu    memory          disk
-#0   running   2014-11-21 08:29:16 PM   0.0%   55.1M of 256M   0 of 1G
+#0   running   2014-11-21 08:38:27 PM   0.0%   52.2M of 256M   0 of 1G
 ```
 
 # Usage
