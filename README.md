@@ -32,7 +32,7 @@ Hit Ctrl-C to quit.
 ```
 
 ## Deployed
-Using the stackato or helion cli, the script can be deployed. The snippet below shows what that looks like.
+Using the cli, the script can be deployed. The snippet below shows what that looks like.
 
 ```
 C:\Users\watrous\Documents\GitHub\cf-echo-service>stackato push
@@ -55,6 +55,64 @@ Push Status: OK
 Starting Application [echo-service] ...
 OK
 http://echo-service.stackato.danielwatrous.com/ deployed
+```
+
+or for CloudFoundry
+
+```
+vagrant@vagrant-ubuntu-trusty-64:~/services/service-broker$ cf push
+Using manifest file /home/vagrant/services/service-broker/manifest.yml
+
+Creating app service-broker in org myorg / space mydept as admin...
+OK
+
+Using route service-broker.10.244.0.34.xip.io
+Binding service-broker.10.244.0.34.xip.io to service-broker...
+OK
+
+Uploading service-broker...
+Uploading app files from: /home/vagrant/services/service-broker
+Uploading 8.2K, 4 files
+Done uploading
+OK
+
+Starting app service-broker in org myorg / space mydept as admin...
+-----> Downloaded app package (4.0K)
+-------> Buildpack version 1.0.5
+Use locally cached dependencies where possible
+-----> Installing runtime (python-3.4.1)
+-----> Installing dependencies with pip
+       Downloading/unpacking bottle (from -r requirements.txt (line 1))
+         Running setup.py (path:/tmp/pip_build_vcap/bottle/setup.py) egg_info for package bottle
+
+       Downloading/unpacking requests (from -r requirements.txt (line 2))
+       Installing collected packages: bottle, requests
+         Running setup.py install for bottle
+           changing mode of build/scripts-3.4/bottle.py from 644 to 755
+
+           changing mode of /app/.heroku/python/bin/bottle.py to 755
+       Successfully installed bottle requests
+       Cleaning up...
+
+-----> Uploading droplet (34M)
+
+1 of 1 instances running
+
+App started
+
+
+OK
+Showing health and status for app service-broker in org myorg / space mydept as admin...
+OK
+
+requested state: started
+instances: 1/1
+usage: 256M x 1 instances
+urls: service-broker.10.244.0.34.xip.io
+last uploaded: Fri Nov 21 20:28:19 UTC 2014
+
+     state     since                    cpu    memory          disk
+#0   running   2014-11-21 08:29:16 PM   0.0%   55.1M of 256M   0 of 1G
 ```
 
 # Usage
