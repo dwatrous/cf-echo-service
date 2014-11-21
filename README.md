@@ -7,7 +7,7 @@ A basic echo service to validate a [Service Broker API v2.3 implementation](http
  * Python 3.x
  * bottle (http://bottlepy.org/docs/dev/index.html)
 
-# Usage
+# Install and Run
 
 The echo service can be run easily on any system that satisfies the dependiencies above. This repository also contains artifacts that make it easy to deploy to Stackato or HP Helion Development Platform.
 
@@ -55,4 +55,120 @@ Push Status: OK
 Starting Application [echo-service] ...
 OK
 http://echo-service.stackato.danielwatrous.com/ deployed
+```
+
+# Usage
+To use the echo service, it may be helpful to install a REST client, such as [Fiddler](http://www.telerik.com/download/fiddler) or [Advanced REST Client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo?hl=en-US). The examples below first show a request and then the expected response.
+
+## Provision
+
+#### Request
+The PUT call below, with an empty BODY, provisions(creates) a new resource with the identifier `51897770-560b-11e4-b75a-9ad2017223a9`.
+```
+PUT http://localhost:8090/echo/51897770-560b-11e4-b75a-9ad2017223a9
+```
+
+#### Response
+```
+{
+  instance_id: "51897770-560b-11e4-b75a-9ad2017223a9"
+  state: "provision_success"
+  dashboard_url: "http://localhost:8090/dashboard/51897770-560b-11e4-b75a-9ad2017223a9"
+}
+```
+
+## Bind
+
+#### Request
+The PUT call below, with an empty BODY, binds an app with the identifier `myapp` to the already provisioned instance `51897770-560b-11e4-b75a-9ad2017223a9`.
+```
+PUT http://localhost:8090/echo/51897770-560b-11e4-b75a-9ad2017223a9/myapp
+```
+
+#### Response
+```
+{
+  app: "myapp"
+  id: "51897770-560b-11e4-b75a-9ad2017223a9"
+  state: "bind_success"
+}
+```
+
+## Echo
+
+#### Request
+The POST call below sends the JSON document in the BODY to the echo sevice based on a specific instance and binding.
+```
+POST http://localhost:8090/echo/51897770-560b-11e4-b75a-9ad2017223a9/myapp
+
+{"message": "Hello World"}
+```
+
+#### Response
+```
+{"response": "Hello World"}
+```
+
+## Dashboard
+
+#### Request
+The GET call below will retrieve a dashboard report for the instance `51897770-560b-11e4-b75a-9ad2017223a9`.
+```
+GET http://localhost:8090/echo/dashboard/51897770-560b-11e4-b75a-9ad2017223a9
+```
+
+#### Response
+```html
+
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Instance</th>
+            <th>Bindings</th>
+            <th>Messages</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>51897770-560b-11e4-b75a-9ad2017223a9</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+    </tbody>
+</table>
+```
+
+## Unbind
+
+#### Request
+The DELETE call below unbinds an app with the identifier `myapp` from the instance `51897770-560b-11e4-b75a-9ad2017223a9`.
+```
+DELETE http://localhost:8090/echo/51897770-560b-11e4-b75a-9ad2017223a9/myapp
+```
+
+#### Response
+```
+{
+  app: "myapp"
+  id: "51897770-560b-11e4-b75a-9ad2017223a9"
+  state: "unbind_success"
+}
+```
+
+## Deprovision
+
+#### Request
+The DELETE call below deprovisions(deletes) a resource with the identifier `51897770-560b-11e4-b75a-9ad2017223a9`, including any bindings and metadata.
+```
+DELETE http://localhost:8090/echo/51897770-560b-11e4-b75a-9ad2017223a9
+```
+
+#### Response
+```
+{
+  bindings: 0
+  state: "deprovision_success"
+  messages: 1
+  id: "51897770-560b-11e4-b75a-9ad2017223a9"
+}
 ```
