@@ -32,7 +32,9 @@ Hit Ctrl-C to quit.
 ```
 
 ## Deployed
-Using the cli, the script can be deployed. The snippet below shows what that looks like.
+The echo service can be deployed in stackato using the command line. The snippet below shows what that looks like.
+
+Stackato supports Python 3.3 (at least it did when I wrote this). Before pushing to stackato, update the **runtime.txt** to have "python-3.3"
 
 ```
 C:\Users\watrous\Documents\GitHub\cf-echo-service>stackato push
@@ -58,6 +60,8 @@ http://echo-service.stackato.danielwatrous.com/ deployed
 ```
 
 or for CloudFoundry
+
+CloudFoundry supports Python 3.4.1 (at least it did when I wrote this). Before pushing to CloudFoundry, update the **runtime.txt** to have "python-3.4.1"
 
 ```
 vagrant@vagrant-ubuntu-trusty-64:~/cf-echo-service$ cf push
