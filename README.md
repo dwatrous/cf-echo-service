@@ -3,6 +3,10 @@ CloudFoundry Echo Service (to validate a Service Broker API)
 
 A basic echo service to validate a [Service Broker API v2.3 implementation](https://github.com/dwatrous/cf-service-broker-python) implementation for CloudFoundry, Stackato, or HP Helion Development Platform. This service was designed to respond to provision, bind, unbind and deprovision requests as defined by the [Service Broker API v2.3 specification](http://docs.cloudfoundry.org/services/api.html). This is relevant for CloudFoundry, Stackato and HP Helion Development Platform.
 
+[Step by step example usage in CloudFoundry](http://software.danielwatrous.com/managed-services-in-cloudfoundry/)
+
+[Step by step example usage in Stackato](http://software.danielwatrous.com/managed-services-in-stackato/)
+
 #### Dependencies
  * Python 3.x
  * bottle (http://bottlepy.org/docs/dev/index.html)
